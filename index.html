@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dodo Games</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: #101322;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      padding: 25px 8%;
+      background: #191e35;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    header h1 { color: #69a7ff; margin: 0; }
+
+    a { color: #9fc5ff; }
+
+    .hero {
+      text-align: center;
+      padding: 65px 20px;
+      background: linear-gradient(135deg, #252f63, #551b6b);
+    }
+
+    .hero h2 { font-size: 42px; margin: 0 0 12px; }
+
+    .hero p { color: #e0e4ff; }
+
+    .games {
+      max-width: 900px;
+      margin: 35px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #1b2035;
+      padding: 25px;
+      border-radius: 16px;
+      border: 1px solid #343c60;
+      text-align: center;
+    }
+
+    .emoji { font-size: 55px; }
+
+    button {
+      background: #568cff;
+      color: white;
+      border: 0;
+      border-radius: 9px;
+      padding: 12px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover { background: #376ce0; }
+
+    #score { font-size: 24px; color: #85ffb1; }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #aab1ce;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🐦 Dodo Games</h1>
+    <span>Play. Have fun. Repeat!</span>
+  </header>
+
+  <section class="hero">
+    <h2>Welcome to Dodo Games!</h2>
+    <p>Your own gaming website, made by you.</p>
+    <a href="#games">Explore Games ↓</a>
+  </section>
+
+  <main class="games" id="games">
+    <section class="card">
+      <div class="emoji">🐦</div>
+      <h2>Click the Dodo</h2>
+      <p>Click the button and see how many points you can earn!</p>
+      <p>Score: <span id="score">0</span></p>
+      <button id="clicker">Click me!</button>
+    </section>
+
+    <section class="card">
+      <div class="emoji">🎲</div>
+      <h2>Lucky Number</h2>
+      <p>Try to guess a number from 1 to 5.</p>
+      <button id="guess">Play now</button>
+      <p id="result">Can you guess correctly?</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Dodo Games · Made with ❤️</p>
+  </footer>
+
+  <script>
+    let score = 0;
+
+    document.getElementById("clicker").onclick = function() {
+      score++;
+      document.getElementById("score").textContent = score;
+    };
+
+    document.getElementById("guess").onclick = function() {
+      const answer = Math.floor(Math.random() * 5) + 1;
+      const guess = prompt("Guess a number from 1 to 5");
+
+      if (guess === null || guess.trim() === "") return;
+
+      if (Number(guess) === answer) {
+        document.getElementById("result").textContent =
+          "🎉 Correct! You win!";
+      } else {
+        document.getElementById("result").textContent =
+          "Not this time! The number was " + answer + ".";
+      }
+    };
+  </script>
+</body>
+</html>
